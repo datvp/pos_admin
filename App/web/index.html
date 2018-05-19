@@ -1,0 +1,108 @@
+
+<!DOCTYPE html>
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0">
+    <script src="https://www.paypalobjects.com/api/checkout.js"></script>
+    <style>
+        #paypal-button-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-right: -50%;
+            transform: translate(-50%, -50%);
+            }
+    </style>
+
+<script>
+    var timer = setInterval(function() {
+        var innerHTML = document.getElementById('paypal-button-container').innerHTML;
+        if (innerHTML) {
+            // window.alert(innerHTML);
+            clearInterval(timer);
+        } else {
+            var refetchPaymentInf = { cmd: 'refetch' };
+            window.postMessage(JSON.stringify(refetchPaymentInf));
+        }
+    }, 100);
+
+    function onLoadedReady() {
+        document.addEventListener("message", function(e) {
+        // remove child
+        document.getElementById('paypal-button-container').innerHTML = '';
+
+        const dataRec = JSON.parse(e.data);
+
+        const clientId = dataRec.payPalCfg.clientId;
+        const mode = dataRec.payPalCfg.mode;
+        const transactions = dataRec.transactions;
+        if (clientId && mode && transactions && paypal) {
+            paypal.Button.render({
+
+            env: mode, // sandbox | production
+
+            // PayPal Client IDs - replace with your own
+            // Create a PayPal app: https://developer.paypal.com/developer/applications/create
+            client: {
+                sandbox: clientId,
+                production: clientId,
+            },
+
+            style: {
+                layout: 'vertical',  // horizontal | vertical
+                size:   'medium',    // medium | large | responsive
+                shape:  'rect',      // pill | rect
+                color:  'gold'       // gold | blue | silver | black
+            },
+
+            // Specify allowed and disallowed funding sources
+            //
+            // Options:
+            // - paypal.FUNDING.CARD
+            // - paypal.FUNDING.CREDIT
+            // - paypal.FUNDING.ELV
+
+            funding: {
+                allowed: [ paypal.FUNDING.CARD, paypal.FUNDING.CREDIT ],
+                disallowed: [ ]
+            },
+
+            // Show the buyer a 'Pay Now' button in the checkout flow
+            commit: true,
+
+            // payment() is called when the button is clicked
+            payment: function(data, actions) {
+
+                // Make a call to the REST api to create the payment
+                return actions.payment.create({
+                    payment: {
+                        transactions
+                    }
+                });
+            },
+
+            // onAuthorize() is called when the buyer approves the payment
+            onAuthorize: function(data, actions) {
+
+                // Make a call to the REST api to execute the payment
+                return actions.payment.execute().then(function() {
+                    var resultPayment = { cmd: 'payment', resultPayment: data };
+                    window.postMessage(JSON.stringify(resultPayment));
+                });
+            }
+
+            }, '#paypal-button-container');
+        } else {
+            window.alert('no data');
+        }
+    });
+}
+    
+</script>
+</head>
+
+<body onload="onLoadedReady()">
+    <div id="paypal-button-container"></div>
+</body>
+    
