@@ -1,5 +1,5 @@
 export const URLS = {
-  LOGIN: '/auth/login',
+  LOGIN: '/login',
   LOGOUT: '/auth/logout',
   SIGNUP: '/auth/register',
   GET_OTP: '/consumer/get-otp',

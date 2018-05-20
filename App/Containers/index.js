@@ -5,6 +5,7 @@ import HomeTab from './HomeTab';
 import InstocksTab from './InstocksTab';
 import ReportsTab from './ReportsTab';
 import AccountTab from './AccountTab';
+import MyAccount from './MyAccount';
 import ForgotPasswordScreen from './ForgotPasswordScreen';
 import LoggedOutSection  from './LoggedOutSection';
 
@@ -16,6 +17,7 @@ export {
   ReportsTab,
   InstocksTab,
   AccountTab,
+  MyAccount,
   ForgotPasswordScreen,
   LoggedOutSection,
 };

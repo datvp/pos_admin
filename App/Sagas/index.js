@@ -20,7 +20,7 @@ import { AddressTypes } from '../Redux/Address';
 import { startup, fetchLaunchData } from './Startup';
 import { requestSignup, sendOtp } from './Signup';
 import { forgotPassword } from './ForgotPassword';
-import { login, loginSocialAccount } from './Login';
+import { login } from './Login';
 import { search } from './Search';
 import { fetchAvailableArtist, confirmArtist } from './Artist';
 import { logout, refreshCustomerData } from './Customer';
@@ -37,7 +37,6 @@ export default function* root() {
 
     //Login
     takeLatest(LoginTypes.LOGIN, login, API),
-    takeLatest(LoginTypes.LOGIN_SOCIAL, loginSocialAccount, API),
 
     //Signup
     takeLatest(SignupTypes.SIGNUP, requestSignup, API),

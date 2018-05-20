@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { View, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
 import { includes, isEmpty } from 'lodash/fp';
+import Drawer from 'react-native-drawer';
+
+import MyAccount from '../Containers/MyAccount';
 
 import { ModalLoading, alert } from '../Components';
 import AppNavigation from '../Navigation/AppNavigation';
@@ -52,6 +55,14 @@ class RootContainer extends Component {
       }
   }
 
+  // closeControlPanel = () => {
+  //   this._drawer.close()
+  // };
+
+  // openControlPanel = () => {
+  //   this._drawer.open()
+  // };
+
   render() {
     const { asyncRequest: { reqSending = '' } = {} } = this.props;
 
@@ -73,24 +84,38 @@ class RootContainer extends Component {
       ],
     );
 
+    console.tron.log('this.props.showMenu', this.props.showMenu);
     return (
-      <View style={styles.applicationView}>
-        <StatusBar
-          backgroundColor={Colors.bgStatusBar}
-          barStyle="light-content"
-        />
-        { isIOS() && <View style={styles.statusBar} /> }
-        <ModalLoading visible={modalVisible} onDismiss={this._onModalDismiss} />
-        <AppNavigation />
-      </View>
+      <Drawer
+        ref={(ref) => this._drawer = ref}
+        side="right"
+        open={this.props.showMenu}
+        tapToClose={true}
+        openDrawerOffset={0.2}
+        // tweenHandler={(ratio) => ({
+        //   main: { opacity:(2-ratio)/2 }
+        // })}
+        content={<MyAccount/>}
+        >
+        <View style={styles.applicationView}>
+          <StatusBar
+            backgroundColor={Colors.bgStatusBar}
+            barStyle="light-content"
+          />
+          { isIOS() && <View style={styles.statusBar} /> }
+          <ModalLoading visible={modalVisible} onDismiss={this._onModalDismiss} />
+          <AppNavigation />
+        </View>
+      </Drawer>
     );
   }
 }
 
 const mapStateToProps = state => {
-  const { asyncRequest } = state;
+  const { asyncRequest, login: { showMenu = false } = {} } = state;
   return {
     asyncRequest,
+    showMenu,
   };
 };
 

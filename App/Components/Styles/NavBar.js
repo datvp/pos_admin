@@ -30,6 +30,10 @@ export default StyleSheet.create({
   iconBack: {
     ...ApplicationStyles.iconHeader,
   },
+  iconMenu: {
+    ...ApplicationStyles.iconHeader,
+    fontSize: 30,
+  },
   controlsContainer: {
     flex: 1,
     flexDirection: 'row',

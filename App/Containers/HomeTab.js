@@ -13,10 +13,17 @@ import { DATE_FORMAT, ROUTES } from '../Constants';
 import { NavBar, SearchBar, Rating } from '../Components';
 import { StartupTypes } from '../Redux/Startup';
 import { SearchTypes } from '../Redux/Search';
+import { LoginTypes } from '../Redux/Login';
 import { Images } from '../Themes';
 import styles from './Styles/HomeTab';
 
-class HomeTab extends PureComponent {  
+class HomeTab extends PureComponent {
+  _onMenuPress = () => {
+    let { showMenu = false } = this.props.login;
+    showMenu = !showMenu;
+    this.props.updateLoginState({showMenu});
+  } 
+
   render() {
     const {
       asyncRequest: { reqSending = '' } = {},
@@ -29,6 +36,7 @@ class HomeTab extends PureComponent {
           title='Home'
           showBackButton={false}
           navigation={this.props.navigation}
+          onMenuPress={this._onMenuPress}
         />
         <SearchBar
           style={styles.searchBar}
@@ -54,11 +62,12 @@ class HomeTab extends PureComponent {
 }
 
 const mapStateToProps = state => {
-  const { asyncRequest, search } = state;
-  return { asyncRequest, search };
+  const { asyncRequest, search, login } = state;
+  return { asyncRequest, search, login };
 };
 const mapDispatchToProps = dispatch => ({
   refresh: () => dispatch({ type: StartupTypes.FETCH_LAUNCH_DATA }),
+  updateLoginState: data => dispatch({ type: LoginTypes.LOGIN_UPDATE_STATE, data }),
   // navigate: route => dispatch(navigate(route)),
   // updateState: action => dispatch(action),
   // requestSearch: () => dispatch({ type: SearchTypes.SEARCH_REQUEST }),

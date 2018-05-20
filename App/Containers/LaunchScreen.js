@@ -18,7 +18,7 @@ export default class LaunchScreen extends Component {
           size={Metrics.spinner}
           type='Wave'
         />
-        <Text style={styles.text}>Launching . . .</Text>
+        <Text style={styles.text}>Initializing  . . .</Text>
       </View>
     );
   }

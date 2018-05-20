@@ -11,4 +11,5 @@ export const ROUTES = {
   REPORTS: 'ReportsTab',
   INSTOCKS: 'InstocksTab',
   ACCOUNT: 'AccountTab',
+  MY_ACCOUNT: 'MyAccount',
 }

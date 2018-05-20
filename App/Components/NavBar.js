@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { isNull } from 'lodash/fp';
-import { View, TouchableWithoutFeedback, Text, BackHandler } from 'react-native';
+import { View, TouchableWithoutFeedback, TouchableOpacity, Text, BackHandler } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import styles from './Styles/NavBar';
@@ -16,6 +16,7 @@ export default class NavBar extends Component {
     renderRight: PropTypes.func,
     navigation: PropTypes.object.isRequired,
     onBackPress: PropTypes.func,
+    onMenuPress: PropTypes.func,
   };
 
   static defaultProps = {
@@ -26,6 +27,7 @@ export default class NavBar extends Component {
     renderRight: () => {},
     navigation: null,
     onBackPress: null,
+    onMenuPress: null,
   }
 
   _onBackPress = () => {
@@ -36,6 +38,22 @@ export default class NavBar extends Component {
       navigation.goBack();
     }
     return true;
+  }
+
+  _onMenuPress = () => {
+    this.props.onMenuPress();
+  }
+
+  _renderMenuButton = () => {
+    const { showBackButton } = this.props;
+    return (
+      <TouchableOpacity
+        onPress={this._onMenuPress}>
+        <View style={styles.iconBackContainer}>
+          <Icon name='menu' style={styles.iconMenu} />
+        </View>
+      </TouchableOpacity>
+    )
   }
 
   _renderBackButton = () => {
@@ -81,6 +99,7 @@ export default class NavBar extends Component {
         }
         { this._renderBackButton() }
         { this._renderControls() }
+        { this._renderMenuButton() }
       </View>
     );
   }

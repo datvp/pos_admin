@@ -32,7 +32,7 @@ const INITIAL_STATE = {
   userName: '',
   passWord: '',
   validation: {},
-  type: ACCOUNTS.CUSTOMER,
+  showMenu: false,
 };
 
 /* ------------- Reducer ------------- */

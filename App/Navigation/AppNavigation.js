@@ -19,6 +19,7 @@ import {
   ReportsTab,
   InstocksTab,
   AccountTab,
+  MyAccount,
   ForgotPasswordScreen,
 } from '../Containers';
 import { CustomIcon } from '../Components';
