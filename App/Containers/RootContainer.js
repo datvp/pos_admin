@@ -84,17 +84,21 @@ class RootContainer extends Component {
       ],
     );
 
-    console.tron.log('this.props.showMenu', this.props.showMenu);
     return (
       <Drawer
         ref={(ref) => this._drawer = ref}
+        type="overlay"
         side="right"
-        open={this.props.showMenu}
         tapToClose={true}
         openDrawerOffset={0.2}
-        // tweenHandler={(ratio) => ({
-        //   main: { opacity:(2-ratio)/2 }
-        // })}
+        panCloseMask={0.2}
+        panOpenMask={0.2}
+        negotiatePan={true}
+        closedDrawerOffset={-3}
+        tweenHandler={(ratio) => ({
+          // main: { opacity:(2-ratio)/2 }
+          mainOverlay: { opacity: ratio * 0.8},
+        })}
         content={<MyAccount/>}
         >
         <View style={styles.applicationView}>
@@ -112,10 +116,9 @@ class RootContainer extends Component {
 }
 
 const mapStateToProps = state => {
-  const { asyncRequest, login: { showMenu = false } = {} } = state;
+  const { asyncRequest } = state;
   return {
     asyncRequest,
-    showMenu,
   };
 };
 

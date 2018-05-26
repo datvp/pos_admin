@@ -32,7 +32,6 @@ const INITIAL_STATE = {
   userName: '',
   passWord: '',
   validation: {},
-  showMenu: false,
 };
 
 /* ------------- Reducer ------------- */

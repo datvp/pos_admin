@@ -24,41 +24,42 @@ export function* login(api, action) {
     return;
   }
 
-  console.tron.log('info', userName, passWord);
+  // console.tron.log('info', userName, passWord);
   // Start submitting login info
   yield put(requestStart(LoginTypes.LOGIN));
-  // const { code, message } = yield api.post(URLS.LOGIN, { userName, passWord });
-  yield delay(2000);
-  yield put(requestEnd());
-  // // Login succceed
-  // if (code === 0) {
-  //   const {
-  //     _id = '',
-  //     token = '',
-  //   } = message;
+  const { code, message } = yield api.post(URLS.LOGIN, { userName, passWord });
+  // console.tron.log('code-message', code, message);
+  // yield delay(2000);
+  // yield put(requestEnd());
+  // Login succceed
+  if (code === 0) {
+    // const {
+    //   _id = '',
+    //   token = '',
+    // } = message;
 
-  //   // Update id, token to redux and local storage
-  //   yield all([
-  //     put({ type: CredentialTypes.CREDENTIAL_UPDATE_STATE, data: { _id, token } }),
-  //     call(setStorage, STORAGE_KEYS.CREDENTIAL, { _id, token }),
-  //   ]);
+    // // Update id, token to redux and local storage
+    // yield all([
+    //   put({ type: CredentialTypes.CREDENTIAL_UPDATE_STATE, data: { _id, token } }),
+    //   call(setStorage, STORAGE_KEYS.CREDENTIAL, { _id, token }),
+    // ]);
 
-  //   // Fetch all customer data
-  //   yield all([
-  //     call(fetchCustomerData, api),
-  //   ]);
+    // // Fetch all customer data
+    // yield all([
+    //   call(fetchCustomerData, api),
+    // ]);
 
-  //   // Reset state of login page and turn off loading modal
-  //   yield all([
-  //     put({ type: LoginTypes.LOGIN_RESET_STATE }),
-  //     put(requestEnd()),
-  //   ]);
+    // Reset state of login page and turn off loading modal
+    yield all([
+      put({ type: LoginTypes.LOGIN_RESET_STATE }),
+      put(requestEnd()),
+    ]);
 
-  //   // Navigate to previous screen
-  //   yield put(goBack());
-  // } else { // Login fail
-  //   yield put(requestFail(message));
-  // }
+    // Navigate to previous screen
+    yield put(goBack());
+  } else { // Login fail
+    yield put(requestFail(message));
+  }
 }
 
 

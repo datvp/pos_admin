@@ -1,10 +1,10 @@
 const colors = {
   bgScreen: '#f4f4f4',
-  bgLaunchScreen: '#ff3333',
+  bgLaunchScreen: '#0079CD',
   bgContainer: '#fff',
-  bgButton: '#db4d48',
+  bgButton: '#0079CD',
   bgButtonDisable: '#2f2e2e',
-  bgNavBar: '#2f2e2e',
+  bgNavBar: '#0079CD',
   bgStatusBar: '#000',
   bgModal: 'rgba(0, 0, 0, 0.8)',
   bgTextInput: '#F8F7F3',
@@ -23,7 +23,7 @@ const colors = {
 
 
   activeTopTab: '#db4d48',
-  activeBottomTab: '#db4d48',
+  activeBottomTab: '#0079CD',
 
   videoOverlay: 'rgba(0, 0, 0, 0.3)',
   videoControls: '#fff',

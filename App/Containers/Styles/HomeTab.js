@@ -6,6 +6,13 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.bgScreen,
   },
+  sectionContainer: {
+    paddingHorizontal: Metrics.sectionPaddingHor,
+    paddingTop: Metrics.sectionPaddingVer,
+  },
+  sectionDetailContainer: {
+    backgroundColor: Colors.bgContainer,
+  },
   mainSection: {
     backgroundColor: Colors.bgContainer,
     paddingHorizontal: Metrics.sectionPaddingHor,
@@ -60,9 +67,10 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  itemHeader: {
+  textTitle: {
     ...ApplicationStyles.textBold,
-    fontSize: 12,
+    fontSize: 16,
+    textAlign: 'center',
   },
   itemContentText: {
     ...ApplicationStyles.textMain,
