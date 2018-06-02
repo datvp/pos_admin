@@ -13,7 +13,7 @@ import { validate } from '../Validation/';
 import { ROUTES, STORAGE_KEYS, URLS } from '../Constants/';
 import { SCHEMA_NAMES } from '../Constants/Types';
 
-export function* login(api, action) {
+export function* login(api) {
   const { userName, passWord } = yield select((state) => state.login);
   // Validate data
   const validation = validate({ userName, passWord }, SCHEMA_NAMES.LOGIN);
@@ -33,28 +33,30 @@ export function* login(api, action) {
   // yield put(requestEnd());
   // Login succceed
   if (code === 0) {
-    // const {
-    //   _id = '',
-    //   token = '',
-    // } = message;
+    const {
+      avatar = '',
+      empId = '',
+      empName = '',
+      phone = '',
+      email = '',
+      birthday = '',
+      token = '',
+    } = message;
 
-    // // Update id, token to redux and local storage
-    // yield all([
-    //   put({ type: CredentialTypes.CREDENTIAL_UPDATE_STATE, data: { _id, token } }),
-    //   call(setStorage, STORAGE_KEYS.CREDENTIAL, { _id, token }),
-    // ]);
-
-    // // Fetch all customer data
-    // yield all([
-    //   call(fetchCustomerData, api),
-    // ]);
-
-    // Reset state of login page and turn off loading modal
+    // console.tron.log('token', token);
+    // Update id, token to redux and local storage
     yield all([
-      put({ type: LoginTypes.LOGIN_RESET_STATE }),
-      put(requestEnd()),
+      put({ type: CredentialTypes.CREDENTIAL_UPDATE_STATE, data: { empId, token } }),
+      put({ type: LoginTypes.LOGIN_UPDATE_STATE, data: { ...message } }),
+      call(setStorage, STORAGE_KEYS.CREDENTIAL, { empId, token }),
     ]);
 
+    // Reset state of login page and turn off loading modal
+    // yield all([
+    //   put({ type: LoginTypes.LOGIN_RESET_STATE }),
+    //   put(requestEnd()),
+    // ]);
+    yield put(requestEnd());
     // Navigate to previous screen
     yield put(goBack());
   } else { // Login fail

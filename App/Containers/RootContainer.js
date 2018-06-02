@@ -87,19 +87,19 @@ class RootContainer extends Component {
     return (
       <Drawer
         ref={(ref) => this._drawer = ref}
-        type="overlay"
         side="right"
+        type="overlay"
+        // styles={drawerStyles}
         tapToClose={true}
-        openDrawerOffset={0.2}
+        openDrawerOffset={0.2} // 30% gap on the right side of drawer
         panCloseMask={0.2}
         panOpenMask={0.2}
         negotiatePan={true}
         closedDrawerOffset={-3}
-        tweenHandler={(ratio) => ({
-          // main: { opacity:(2-ratio)/2 }
-          mainOverlay: { opacity: ratio * 0.8},
-        })}
         content={<MyAccount/>}
+        tweenHandler={(ratio) => ({
+          mainOverlay: { backgroundColor:'#000', opacity: ratio * 0.8},
+        })}
         >
         <View style={styles.applicationView}>
           <StatusBar

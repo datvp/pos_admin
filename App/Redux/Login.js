@@ -31,6 +31,12 @@ const {
 const INITIAL_STATE = {
   userName: '',
   passWord: '',
+  avatar: '',
+  empId: '',
+  empName: '',
+  phone: '',
+  email: '',
+  birthday: '',
   validation: {},
 };
 

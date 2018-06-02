@@ -17,7 +17,7 @@ const {
 /* ------------- Initial State ------------- */
 
 const INITIAL_STATE = {
-  _id: '',
+  empId: '',
   token: '',
 };
 

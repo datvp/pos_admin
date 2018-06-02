@@ -4,8 +4,8 @@ export default {
   // font scaling override - RN default is on
   allowTextFontScaling: true,
   api: {
-    host: '192.168.1.3',
-    port: 5000,
+    host: '192.168.1.4',
+    port: 3000,
     protocol: 'http',
     version: '',
   },
