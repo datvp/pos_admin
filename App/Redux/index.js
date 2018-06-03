@@ -11,6 +11,7 @@ export const reducers = combineReducers({
   asyncRequest: require('./AsyncRequest').reducer,  // Handle asynchronous request, show spinner...
   configs: require('./Configs').reducer, // Store all configs for app
   customer: require('./Customer').reducer, // Store data of user after logging in
+  customers: require('./Customers').reducer, // Store data of user after logging in
   artist: require('./Artist').reducer, // List all artists, list search artists, detail artist
   service: require('./Service').reducer, // List all available services
   review: require('./Review').reducer, // Store data for writing review

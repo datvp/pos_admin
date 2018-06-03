@@ -2,6 +2,7 @@ export const URLS = {
   LOGIN: '/login',
   LOGOUT: '/logout',
   FETCH_LAUNCH_DATA: '/fetch/launch',
+  FETCH_CUSTOMERS: '/customers/fetch',
   SIGNUP: '/auth/register',
   GET_OTP: '/consumer/get-otp',
   SOCIAL_NETWORK_UPSERT: '/consumer/classes/SocialAccounts/upsert',

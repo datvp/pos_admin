@@ -12,4 +12,5 @@ export const ROUTES = {
   INSTOCKS: 'InstocksTab',
   ACCOUNT: 'AccountTab',
   MY_ACCOUNT: 'MyAccount',
+  CUSTOMER: 'CustomerTab',
 }

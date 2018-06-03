@@ -29,8 +29,8 @@ const {
 /* ------------- Initial State ------------- */
 
 const INITIAL_STATE = {
-  userName: '',
-  passWord: '',
+  userName: 'admin',
+  passWord: '123',
   avatar: '',
   empId: '',
   empName: '',

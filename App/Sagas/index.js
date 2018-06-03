@@ -11,6 +11,7 @@ import { SearchTypes } from '../Redux/Search';
 import { ArtistTypes } from '../Redux/Artist';
 import { ForgotPasswordTypes } from '../Redux/ForgotPassword';
 import { CustomerTypes } from '../Redux/Customer';
+import { CustomerTypes as CustomersTypes } from '../Redux/Customers';
 import { BookingTypes } from '../Redux/Booking';
 import { ReviewTypes } from '../Redux/Review';
 import { AddressTypes } from '../Redux/Address';
@@ -24,6 +25,7 @@ import { login } from './Login';
 import { search } from './Search';
 import { fetchAvailableArtist, confirmArtist } from './Artist';
 import { logout, refreshCustomerData } from './Customer';
+import { fetchCustomers, refreshCustomers } from './Customers';
 import { submitReview } from './Review';
 import { saveAdress } from './Address';
 
@@ -37,6 +39,10 @@ export default function* root() {
 
     //Login
     takeLatest(LoginTypes.LOGIN, login, API),
+
+    // Customers
+    // takeLatest(CustomersTypes.CUSTOMERS_UPDATE_STATE, fetchCustomers, API),
+    takeLatest(CustomersTypes.CUSTOMERS_REFRESH_DATA, refreshCustomers, API),
 
     //Signup
     takeLatest(SignupTypes.SIGNUP, requestSignup, API),

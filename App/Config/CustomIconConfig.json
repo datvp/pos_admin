@@ -16,7 +16,7 @@
         "isMulticolor2": false,
         "grid": 0,
         "tags": [
-          "account"
+          "customer"
         ]
       },
       "attrs": [
@@ -26,7 +26,7 @@
       "properties": {
         "order": 2,
         "id": 3,
-        "name": "account",
+        "name": "customer",
         "prevSize": 32,
         "code": 59648
       },

@@ -20,6 +20,7 @@ import {
   InstocksTab,
   AccountTab,
   MyAccount,
+  CustomerTab,
   ForgotPasswordScreen,
 } from '../Containers';
 import { CustomIcon } from '../Components';
@@ -68,14 +69,14 @@ const DashboardNavigator = TabNavigator(
         ),
       },
     },
-    [ROUTES.ACCOUNT]: {
-      screen: AccountTab,
+    [ROUTES.CUSTOMER]: {
+      screen: CustomerTab,
       navigationOptions: {
-        title: 'Account',
+        title: 'Customer',
         tabBarIcon: ({ focused, tintColor }) => (
           <CustomIcon
             style={styles.bottomTabIcon}
-            name="account"
+            name="customer"
             color={tintColor}
           />
         ),
